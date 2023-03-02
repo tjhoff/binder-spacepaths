@@ -22,7 +22,7 @@
 #include <clang/AST/ExprCXX.h>
 #include <clang/Basic/SourceManager.h>
 
-//#include <experimental/filesystem>
+// #include <experimental/filesystem>
 #include <cctype>
 #include <cstdlib>
 #include <fstream>
@@ -69,7 +69,7 @@ void replace_reverse(string &r, string const &from, string const &to)
 void replace(string &r, string const &from, string const &to)
 {
 	std::string::size_type i = 0;
-	while( ( i = r.find(from, i) ) != std::string::npos ) {
+	while( (i = r.find(from, i)) != std::string::npos ) {
 		r.replace(i, from.size(), to);
 		i += to.size();
 	}
@@ -130,7 +130,7 @@ void update_source_file(std::string const &prefix, std::string const &file_name,
 	if( old_code != code ) {
 		if( O_verbose ) outs() << "Writing " << full_file_name << "\n";
 		std::ofstream f(full_file_name);
-		if( f.fail() ) throw std::runtime_error("ERROR: Can not open file " + full_file_name + " for writing...");
+		if( f.fail() ) throw std::runtime_error("ERROR: Can not open file " + full_file_name + " for writing... (used `" + command_line + "`)");
 		f << code;
 	}
 	else {
@@ -226,7 +226,7 @@ string template_argument_to_string(clang::TemplateArgument const &t)
 	t.print(Policy, s, true);
 #endif
 
-    string r = s.str();
+	string r = s.str();
 
 	// // simplify result if argument is a small number, taking care of cases like 1L or 1UL
 	// if( r.size() < 5 and std::isdigit(r[0]) ) {
