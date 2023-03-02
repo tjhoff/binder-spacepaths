@@ -121,6 +121,7 @@ void update_source_file(std::string const &prefix, std::string const &file_name,
 
 	// std::experimental::filesystem::create_directories(path);
 	string command_line = "mkdir -p " + path;
+
 	system(command_line.c_str());
 
 	string full_file_name = prefix + '/' + file_name;
@@ -130,7 +131,7 @@ void update_source_file(std::string const &prefix, std::string const &file_name,
 	if( old_code != code ) {
 		if( O_verbose ) outs() << "Writing " << full_file_name << "\n";
 		std::ofstream f(full_file_name);
-		if( f.fail() ) throw std::runtime_error("ERROR: Can not open file " + full_file_name + " for writing...");
+		if( f.fail() ) throw std::runtime_error("ERROR: Can not open file " + full_file_name + " for writing... (created" + command_line + ")");
 		f << code;
 	}
 	else {
